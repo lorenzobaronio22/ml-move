@@ -1,6 +1,6 @@
 ---
 import { Icon } from "astro-icon/components";
-import type { Locale } from "../../lib/site-config";
+import { SITE_CONFIG, type Locale } from "../../lib/site-config";
 import { t } from "../../i18n/ui";
 import { resolveRoute, detectLocale, stripLocale } from "../../i18n/routes";
 import { mainNav } from "../../config/nav.config";
@@ -20,8 +20,7 @@ const {
   currentPath = "/",
   showThemeToggle = true,
 } = Astro.props as Props;
-const detectedLocale = detectLocale(currentPath);
-const effectiveLocale = detectedLocale || currentLocale;
+const effectiveLocale = currentLocale || detectLocale(currentPath) || SITE_CONFIG.defaultLocale;
 const contentPath = stripLocale(currentPath);
 
 const navLinks = mainNav.map((item) => ({

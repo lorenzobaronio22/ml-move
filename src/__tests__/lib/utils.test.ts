@@ -14,8 +14,8 @@ describe("formatDate", () => {
     expect(formatDate(new Date("2025-01-15"), "en")).toBe("January 15, 2025");
   });
 
-  it("formats an Indonesian long date", () => {
-    expect(formatDate(new Date("2025-01-15"), "id-ID")).toBe("15 Januari 2025");
+  it("formats an Italian long date", () => {
+    expect(formatDate(new Date("2025-01-15"), "it-IT")).toBe("15 gennaio 2025");
   });
 });
 

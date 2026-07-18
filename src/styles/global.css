@@ -1,5 +1,5 @@
 /**
- * global.css — Main CSS entry point for the Astro Cloudflare starter
+ * global.css — Main CSS entry point for the ml-move site
  *
  * Architecture:
  *   1. Tailwind CSS import
@@ -556,11 +556,11 @@ code {
   font-size: var(--text-code-sm);
   line-height: 1.7;
   white-space: pre-wrap;
-  word-break: break-word;
+  word-break: auto-phrase;
   overflow-x: auto;
 }
 
-@media (max-width: 48rem) {
+@media (width <= 48rem) {
   .feature-tabs__panel {
     grid-template-columns: 1fr;
     align-items: stretch;

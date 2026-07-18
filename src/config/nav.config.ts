@@ -20,36 +20,22 @@ export interface NavItem {
 /** Main navigation items for header */
 export const mainNav: NavItem[] = [
   { href: "/", labelKey: "nav.home" },
-  { href: "/about", labelKey: "nav.about" },
-  { href: "/services", labelKey: "nav.services" },
-  { href: "/pricing", labelKey: "nav.pricing" },
-  { href: "/blog", labelKey: "nav.blog" },
-  { href: "/contact", labelKey: "nav.contact" },
 ] as const;
 
 /** Footer navigation grouped by section */
-export const footerNav = {
-  /** Product and service links */
-  product: [
-    { href: "/services", labelKey: "nav.services" },
-    { href: "/pricing", labelKey: "nav.pricing" },
-  ] as const,
-  /** Legal pages and terms */
-  legal: [
-    { href: "/privacy", labelKey: "footer.privacy" },
-    { href: "/terms", labelKey: "footer.terms" },
-  ] as const,
-  /** Social media and contact links */
+export const footerNav: {
+  product: readonly NavItem[];
+  legal: readonly NavItem[];
+  social: readonly NavItem[];
+} = {
+  product: [],
+  legal: [],
   social: [
     {
-      href: "https://github.com/milzamsz/astro-cloudflare-starter",
+      href: "https://github.com/ml-move",
       labelKey: "footer.github",
     },
-    {
-      href: "https://www.linkedin.com/in/milzamsz/",
-      labelKey: "footer.linkedin",
-    },
-  ] as const,
+  ],
 } as const;
 
 /** Helper function to get navigation items by section */

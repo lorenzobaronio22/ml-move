@@ -1,8 +1,9 @@
 # Site Settings
 # Edit this file in Git.
-name: "Astro Cloudflare"
-description: "Marketing, blog, and docs starter — multilanguage-ready."
-url: "https://astro-cloudflare-starter.pages.dev"
+name: "ml-move"
+mark: "ML"
+description: "A fast, modern site — multilanguage-ready."
+url: "https://ml-move.pages.dev"
 defaultLocale: en
 analyticsProvider: none
 gtmId: ""

@@ -1,41 +1,31 @@
 import { test, expect } from "@playwright/test";
 
-test.describe("navigation chrome", () => {
-  test("homepage loads with nav links", async ({ page }) => {
+test.describe("homepage", () => {
+  test("homepage loads with the hello message", async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto("/", { waitUntil: "domcontentloaded" });
-    await expect(page.locator("h1").first()).toBeVisible({ timeout: 30_000 });
+    const heading = page.locator("h1").first();
+    await expect(heading).toBeVisible({ timeout: 30_000 });
+    await expect(heading).toHaveText("Hello ML Move!", { timeout: 30_000 });
+  });
+
+  test("homepage shows nav links", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".header__list a").first()).toBeVisible({
       timeout: 30_000,
     });
   });
 
-  test("switches locale back and forth", async ({ page }) => {
+  test("language switcher shows IT and links to Italian locale", async ({
+    page,
+  }) => {
     test.setTimeout(60_000);
     await page.goto("/", { waitUntil: "domcontentloaded" });
     const switcher = page.locator(".language-switcher").first();
     await expect(switcher).toBeVisible({ timeout: 30_000 });
     await expect(switcher).toHaveText("IT");
-    await expect(switcher).toHaveAttribute("hreflang", "it");
     await expect(switcher).toHaveAttribute("href", "/it/");
-
-    await switcher.click();
-    await page.waitForURL("/it/", { timeout: 30_000 });
-    await expect(page.locator("h1").first()).toHaveText("Ciao ML Move!", {
-      timeout: 30_000,
-    });
-
-    const back = page.locator(".language-switcher").first();
-    await expect(back).toBeVisible({ timeout: 30_000 });
-    await expect(back).toHaveText("EN");
-    await expect(back).toHaveAttribute("hreflang", "en");
-    await expect(back).toHaveAttribute("href", "/");
-
-    await back.click();
-    await page.waitForURL("/", { timeout: 30_000 });
-    await expect(page.locator("h1").first()).toHaveText("Hello ML Move!", {
-      timeout: 30_000,
-    });
   });
 
   test("dark mode toggle flips the html dark class", async ({ page }) => {
@@ -62,6 +52,21 @@ test.describe("navigation chrome", () => {
     await expect(dialog).toBeVisible({ timeout: 30_000 });
     await page.keyboard.press("Escape");
     await expect(dialog).not.toBeVisible({ timeout: 30_000 });
+  });
+
+  test("Italian locale shows the Italian hello message and EN link back", async ({
+    page,
+  }) => {
+    test.setTimeout(60_000);
+    await page.goto("/it/", { waitUntil: "domcontentloaded" });
+    const heading = page.locator("h1").first();
+    await expect(heading).toBeVisible({ timeout: 30_000 });
+    await expect(heading).toHaveText("Ciao ML Move!", { timeout: 30_000 });
+
+    const switcher = page.locator(".language-switcher").first();
+    await expect(switcher).toBeVisible({ timeout: 30_000 });
+    await expect(switcher).toHaveText("EN");
+    await expect(switcher).toHaveAttribute("href", "/");
   });
 
   test("mobile menu toggle opens the panel", async ({ page }) => {

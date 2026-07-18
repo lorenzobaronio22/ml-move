@@ -1,8 +1,8 @@
 {
-  "name": "astro-cloudflare",
+  "name": "ml-move",
   "version": "1.0.0",
   "private": true,
-  "description": "Multilingual marketing + blog + docs starter with Astro and Cloudflare Pages",
+  "description": "A fast, modern site built with Astro and Cloudflare Pages",
   "license": "MIT",
   "packageManager": "pnpm@8.15.0",
   "type": "module",
@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@astrojs/check": "^0.9.9",
-    "@astrojs/starlight": "^0.41.3",
+
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.1",

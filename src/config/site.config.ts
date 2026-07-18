@@ -9,6 +9,7 @@ export interface SiteConfig {
   /* Core site metadata */
   url: string;
   name: string;
+  mark: string;
   description: string;
   author: string;
   email: string;
@@ -91,27 +92,21 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   /* Core configuration — single source of truth for canonical/OG/sitemap/llms.txt.
    * Replace with your production domain when forking this template. */
-  url: "https://astro-cloudflare-starter.pages.dev",
-  name: "Astro Cloudflare",
-  description:
-    "Marketing, blog, and docs starter built with Astro and Cloudflare Pages — multilanguage-ready",
-  author: "Milzam",
-  email: "milzamsz@gmail.com",
+  url: "https://ml-move.pages.dev",
+  name: "ml-move",
+  mark: "ML",
+  description: "A fast, modern site built with Astro and Cloudflare Pages.",
+  author: "ML Move Team",
+  email: "hello@ml-move.dev",
   authorImage: "/images/author.jpg",
 
   /* Social links */
   socialLinks: [
     {
       platform: "github",
-      url: "https://github.com/milzamsz/astro-cloudflare-starter",
+      url: "https://github.com/ml-move",
       label: "GitHub",
     },
-    {
-      platform: "linkedin",
-      url: "https://www.linkedin.com/in/milzamsz/",
-      label: "LinkedIn",
-    },
-    { platform: "email", url: "mailto:milzamsz@gmail.com", label: "Email" },
   ],
 
   /* Header settings */
@@ -176,7 +171,7 @@ export const siteConfig: SiteConfig = {
   /* i18n configuration (matches i18n.config.ts) */
   i18n: {
     enabled: true,
-    locales: ["en"],
+    locales: ["en", "it"],
     defaultLocale: "en",
     routing: { prefixDefaultLocale: false },
   },

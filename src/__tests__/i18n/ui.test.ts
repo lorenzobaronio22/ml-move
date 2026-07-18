@@ -6,12 +6,18 @@ describe("t()", () => {
     expect(t("en", "nav.home")).toBe("Home");
   });
 
+  it("returns the Italian string for a known key", () => {
+    expect(t("it", "hero.title")).toBe("Ciao ML Move!");
+  });
+
   it("returns the key as fallback when missing", () => {
     expect(t("en", "nonexistent.key")).toBe("nonexistent.key");
   });
 
-  it("exposes the active locale dictionary", () => {
+  it("exposes all locale dictionaries", () => {
     expect(translations.en).toBeDefined();
+    expect(translations.it).toBeDefined();
     expect(Object.keys(translations.en ?? {}).length).toBeGreaterThan(0);
+    expect(Object.keys(translations.it ?? {}).length).toBeGreaterThan(0);
   });
 });

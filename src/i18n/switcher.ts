@@ -8,13 +8,6 @@ import { stripLocale, localePrefix } from "./routes";
  */
 const EQUIVALENT_ROUTES: Record<string, boolean> = {
   "/": true,
-  "/about": true,
-  "/services": true,
-  "/pricing": true,
-  "/blog": true,
-  "/contact": true,
-  "/privacy": true,
-  "/terms": true,
 };
 
 /**
@@ -33,7 +26,8 @@ export function getEquivalentPath(
 
   // If the route is known to have an equivalent, map it
   if (EQUIVALENT_ROUTES[contentPath]) {
-    return `${prefix}${contentPath === "/" ? "" : contentPath}`;
+    const result = `${prefix}${contentPath === "/" ? "/" : contentPath}`;
+    return result || "/";
   }
 
   // For blog posts and docs, try the content path directly

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://schema.cloudflare.com/wrangler/2024-10-01",
-	"name": "astro-cloudflare",
+	"name": "ml-move",
 	"compatibility_date": "2026-06-24",
 	"compatibility_flags": [
 		"nodejs_compat"

@@ -1,8 +1,15 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import { t } from "../i18n/ui";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { SITE_CONFIG, type Locale } from "../../lib/site-config";
+import { t } from "../../i18n/ui";
 
-const locale = (Astro.currentLocale || "en") as "en";
+export function getStaticPaths() {
+  return SITE_CONFIG.locales
+    .filter((loc) => loc !== SITE_CONFIG.defaultLocale)
+    .map((locale) => ({ params: { locale } }));
+}
+
+const locale = (Astro.params.locale || "it") as Locale;
 ---
 
 <BaseLayout
