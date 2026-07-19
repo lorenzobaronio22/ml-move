@@ -1,0 +1,146 @@
+---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
+import Section from "../ui/layout/Section/Section.astro";
+import Container from "../ui/layout/Container/Container.astro";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const contacts = [
+  {
+    icon: "mail",
+    labelKey: "footer.email",
+    href: "mailto:example@mlmove.com",
+    value: "example@mlmove.com",
+  },
+  {
+    icon: "phone",
+    labelKey: "footer.phone",
+    href: "tel:+15551234567",
+    value: "+1 (555) 123-4567",
+  },
+  {
+    icon: "map-pin",
+    labelKey: "contact.address",
+    href: "#",
+    value: "1234 ML Move Blvd, Suite 100, Austin, TX 78701",
+  },
+];
+---
+
+<section class="contact-section" id="contact">
+  <Section spacing="xl">
+    <Container size="md">
+      <header class="section-head">
+        <p class="section-head__eyebrow">{t(locale, "contact.title")}</p>
+        <h2 class="section-head__title">{t(locale, "contact.title")}</h2>
+        <p class="section-head__lead">{t(locale, "contact.lead")}</p>
+      </header>
+    </Container>
+    <Container size="lg">
+      <div class="contact-section__grid">
+        {
+          contacts.map((c) => (
+            <a href={c.href} class="contact-section__card">
+              <div class="contact-section__icon" aria-hidden="true">
+                {
+                  c.icon === "mail" && (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                  )
+                }
+                {
+                  c.icon === "phone" && (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                  )
+                }
+                {
+                  c.icon === "map-pin" && (
+                    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>
+                  )
+                }
+              </div>
+              <div class="contact-section__body">
+                <span class="contact-section__label">{t(locale, c.labelKey)}</span>
+                <span class="contact-section__value">{c.value}</span>
+              </div>
+            </a>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+</section>
+
+<style>
+  .contact-section__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .contact-section__card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-lg);
+    padding: var(--space-2xl) var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+
+  .contact-section__card:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .contact-section__card:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  .contact-section__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-full);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    color: var(--foreground);
+  }
+
+  .contact-section__body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+
+  .contact-section__label {
+    font-size: 0.8125rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted-foreground);
+  }
+
+  .contact-section__value {
+    font-size: 1.0625rem;
+    font-weight: 500;
+  }
+
+  @media (max-width: 48rem) {
+    .contact-section__grid {
+      grid-template-columns: 1fr;
+      max-width: 24rem;
+      margin-inline: auto;
+    }
+  }
+</style>

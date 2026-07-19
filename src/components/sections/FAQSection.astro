@@ -1,0 +1,125 @@
+---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
+import Section from "../ui/layout/Section/Section.astro";
+import Container from "../ui/layout/Container/Container.astro";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const faqItems = [
+  { qKey: "faq.q1", aKey: "faq.a1" },
+  { qKey: "faq.q2", aKey: "faq.a2" },
+  { qKey: "faq.q3", aKey: "faq.a3" },
+  { qKey: "faq.q4", aKey: "faq.a4" },
+  { qKey: "faq.q5", aKey: "faq.a5" },
+  { qKey: "faq.q6", aKey: "faq.a6" },
+];
+---
+
+<section class="faq-section" id="faq">
+  <Section spacing="xl">
+    <Container size="md">
+      <header class="section-head">
+        <p class="section-head__eyebrow">{t(locale, "faq.title")}</p>
+        <h2 class="section-head__title">{t(locale, "faq.title")}</h2>
+        <p class="section-head__lead">{t(locale, "faq.lead")}</p>
+      </header>
+      <div class="faq-section__list">
+        {
+          faqItems.map((item) => (
+            <details class="faq-section__item" name="faq">
+              <summary class="faq-section__question">
+                <span>{t(locale, item.qKey)}</span>
+                <span class="faq-section__icon" aria-hidden="true">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+                </span>
+              </summary>
+              <div class="faq-section__answer">
+                <p>{t(locale, item.aKey)}</p>
+              </div>
+            </details>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+</section>
+
+<style>
+  .faq-section__list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: var(--space-xl);
+  }
+
+  .faq-section__item {
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--card);
+    overflow: hidden;
+    transition: box-shadow 0.15s ease;
+  }
+
+  .faq-section__item:hover {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-section__item[open] {
+    box-shadow: var(--shadow-sm);
+  }
+
+  .faq-section__question {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    padding: var(--space-lg);
+    cursor: pointer;
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+    user-select: none;
+    -webkit-user-select: none;
+  }
+
+  .faq-section__question::-webkit-details-marker {
+    display: none;
+  }
+
+  .faq-section__question::marker {
+    display: none;
+    content: "";
+  }
+
+  .faq-section__icon {
+    flex-shrink: 0;
+    color: var(--muted-foreground);
+    transition: transform 0.2s ease;
+  }
+
+  .faq-section__item[open] .faq-section__icon {
+    transform: rotate(180deg);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .faq-section__icon {
+      transition: none;
+    }
+  }
+
+  .faq-section__answer {
+    padding: 0 var(--space-lg) var(--space-lg);
+  }
+
+  .faq-section__answer p {
+    margin: 0;
+    color: var(--muted-foreground);
+    line-height: 1.7;
+    font-size: 0.9375rem;
+  }
+</style>

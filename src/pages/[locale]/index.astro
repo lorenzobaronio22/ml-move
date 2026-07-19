@@ -1,7 +1,13 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
-import { SITE_CONFIG, type Locale } from "../../lib/site-config";
+import { SITE_CONFIG } from "../../lib/site-config";
+import type { Locale } from "../../lib/site-config";
 import { t } from "../../i18n/ui";
+import { HeroSection, HowItWorksSection, PricingSection, FAQSection, ContactSection } from "../../components/sections";
+import Section from "../../components/ui/layout/Section/Section.astro";
+import Container from "../../components/ui/layout/Container/Container.astro";
+import Grid from "../../components/ui/layout/Grid/Grid.astro";
+import CTA from "../../components/ui/marketing/CTA/CTA.astro";
 
 export function getStaticPaths() {
   return SITE_CONFIG.locales
@@ -10,6 +16,21 @@ export function getStaticPaths() {
 }
 
 const locale = (Astro.params.locale || "it") as Locale;
+
+const benefits = [
+  { icon: "lucide:clock", titleKey: "benefits.flexible.title", descKey: "benefits.flexible.desc" },
+  { icon: "lucide:shield-check", titleKey: "benefits.insurance.title", descKey: "benefits.insurance.desc" },
+  { icon: "lucide:headphones", titleKey: "benefits.support.title", descKey: "benefits.support.desc" },
+  { icon: "lucide:ban", titleKey: "benefits.fees.title", descKey: "benefits.fees.desc" },
+  { icon: "lucide:map-pin", titleKey: "benefits.locations.title", descKey: "benefits.locations.desc" },
+  { icon: "lucide:mouse-pointer-click", titleKey: "benefits.booking.title", descKey: "benefits.booking.desc" },
+];
+
+const testimonials = [
+  { quoteKey: "testimonials.quote1", authorKey: "testimonials.author1", roleKey: "testimonials.role1" },
+  { quoteKey: "testimonials.quote2", authorKey: "testimonials.author2", roleKey: "testimonials.role2" },
+  { quoteKey: "testimonials.quote3", authorKey: "testimonials.author3", roleKey: "testimonials.role3" },
+];
 ---
 
 <BaseLayout
@@ -17,35 +38,280 @@ const locale = (Astro.params.locale || "it") as Locale;
   description={t(locale, "hero.subtitle")}
   locale={locale}
   path="/"
+  showThemeToggle={true}
 >
-  <section class="hero container">
-    <h1>{t(locale, "hero.title")}</h1>
-    <p class="hero__subtitle">{t(locale, "hero.subtitle")}</p>
+  <HeroSection locale={locale} />
+
+  <HowItWorksSection locale={locale} />
+
+  <section id="fleet">
+    <Section spacing="xl">
+      <Container size="md">
+        <header class="section-head">
+          <p class="section-head__eyebrow">{t(locale, "fleet.title")}</p>
+          <h2 class="section-head__title">{t(locale, "fleet.title")}</h2>
+          <p class="section-head__lead">{t(locale, "fleet.lead")}</p>
+        </header>
+      </Container>
+      <Container size="lg">
+        <div class="fleet-section__grid">
+          <article class="fleet-section__card" data-animate>
+            <div class="fleet-section__card-visual" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="fleet-section__card-icon">
+                <rect x="1" y="3" width="15" height="13" rx="2"/><polygon points="16 8 20 8 23 11 23 16 16 16 16 8"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/>
+              </svg>
+            </div>
+            <h3 class="fleet-section__card-title">{t(locale, "fleet.cargoTab")}</h3>
+            <p class="fleet-section__card-desc">{t(locale, "fleet.cargoDescription")}</p>
+            <ul class="fleet-section__card-specs">
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.cargoSpec1")}</li>
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.cargoSpec2")}</li>
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.cargoSpec3")}</li>
+            </ul>
+          </article>
+          <article class="fleet-section__card" data-animate>
+            <div class="fleet-section__card-visual" aria-hidden="true">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" class="fleet-section__card-icon">
+                <path d="M16 16h3a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h3"/><circle cx="6" cy="17" r="3"/><circle cx="18" cy="17" r="3"/><line x1="9" y1="7" x2="9" y2="11"/><line x1="12" y1="7" x2="12" y2="11"/><line x1="15" y1="7" x2="15" y2="11"/>
+              </svg>
+            </div>
+            <h3 class="fleet-section__card-title">{t(locale, "fleet.passengerTab")}</h3>
+            <p class="fleet-section__card-desc">{t(locale, "fleet.passengerDescription")}</p>
+            <ul class="fleet-section__card-specs">
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.passengerSpec1")}</li>
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.passengerSpec2")}</li>
+              <li><span class="fleet-section__check" aria-hidden="true">✓</span> {t(locale, "fleet.passengerSpec3")}</li>
+            </ul>
+          </article>
+        </div>
+      </Container>
+    </Section>
   </section>
+
+  <section id="benefits">
+    <Section spacing="xl">
+      <Container size="md">
+        <header class="section-head">
+          <p class="section-head__eyebrow">{t(locale, "benefits.title")}</p>
+          <h2 class="section-head__title">{t(locale, "benefits.title")}</h2>
+          <p class="section-head__lead">{t(locale, "benefits.lead")}</p>
+        </header>
+      </Container>
+      <Container size="lg">
+        <Grid cols={3}>
+          {
+            benefits.map((benefit) => (
+              <article class="benefits-section__card" data-animate>
+                <div class="benefits-section__icon" aria-hidden="true">
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    {benefit.icon === "lucide:clock" && <><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></>}
+                    {benefit.icon === "lucide:shield-check" && <><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></>}
+                    {benefit.icon === "lucide:headphones" && <><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></>}
+                    {benefit.icon === "lucide:ban" && <><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></>}
+                    {benefit.icon === "lucide:map-pin" && <><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></>}
+                    {benefit.icon === "lucide:mouse-pointer-click" && <><path d="M14 4.1 12 6"/><path d="m5.1 8-2.9-.8"/><path d="m6 12-1.9 2"/><path d="M7.2 2.2 8 5.1"/><path d="M9.037 9.69a.498.498 0 0 1 .653-.653l11 4.5a.5.5 0 0 1-.074.949l-4.349 1.041a1 1 0 0 0-.74.739l-1.04 4.35a.5.5 0 0 1-.95.074z"/></>}
+                  </svg>
+                </div>
+                <h3 class="benefits-section__card-title">{t(locale, benefit.titleKey)}</h3>
+                <p class="benefits-section__card-desc">{t(locale, benefit.descKey)}</p>
+              </article>
+            ))
+          }
+        </Grid>
+      </Container>
+    </Section>
+  </section>
+
+  <PricingSection locale={locale} />
+
+  <Section spacing="xl">
+    <Container size="md">
+      <header class="section-head">
+        <p class="section-head__eyebrow">{t(locale, "testimonials.title")}</p>
+        <h2 class="section-head__title">{t(locale, "testimonials.title")}</h2>
+      </header>
+    </Container>
+    <Container size="lg">
+      <div class="testimonials-section__grid">
+        {
+          testimonials.map((item) => (
+            <figure class="testimonials-section__card" data-animate>
+              <blockquote class="testimonials-section__quote">
+                &ldquo;{t(locale, item.quoteKey)}&rdquo;
+              </blockquote>
+              <figcaption class="testimonials-section__attribution">
+                <strong>{t(locale, item.authorKey)}</strong>
+                <span>{t(locale, item.roleKey)}</span>
+              </figcaption>
+            </figure>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+
+  <FAQSection locale={locale} />
+
+  <ContactSection locale={locale} />
+
+  <CTA
+    eyebrow={t(locale, "cta.title")}
+    title={t(locale, "cta.title")}
+    content={t(locale, "cta.content")}
+    primaryText={t(locale, "cta.primary")}
+    primaryHref="#"
+    secondaryText={t(locale, "cta.secondary")}
+    secondaryHref="#"
+  />
 </BaseLayout>
 
 <style>
-  .hero {
+  .fleet-section__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .fleet-section__card {
     display: flex;
     flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+  }
+
+  .fleet-section__card-visual {
+    display: inline-grid;
+    place-items: center;
+    width: 4.5rem;
+    height: 4.5rem;
+    border-radius: var(--radius-xl);
+    background: var(--muted);
+    border: 1px solid var(--border);
+  }
+
+  .fleet-section__card-icon {
+    color: var(--foreground);
+  }
+
+  .fleet-section__card-title {
+    margin: 0;
+    font-size: 1.35rem;
+    letter-spacing: -0.01em;
+  }
+
+  .fleet-section__card-desc {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .fleet-section__card-specs {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .fleet-section__card-specs li {
+    display: flex;
     align-items: center;
-    justify-content: center;
-    min-height: 60vh;
-    text-align: center;
+    gap: 0.5rem;
+    font-size: 0.9375rem;
+  }
+
+  .fleet-section__check {
+    flex-shrink: 0;
+    color: var(--primary);
+    font-weight: 700;
+  }
+
+  .benefits-section__card {
+    display: flex;
+    flex-direction: column;
     gap: var(--space-md);
+    padding: var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-xl);
+    background: var(--card);
   }
-  .hero h1 {
-    margin: 0;
-    font-size: clamp(2.5rem, 5vw, 4.5rem);
-    font-weight: 800;
-    letter-spacing: -0.03em;
-    line-height: 1.1;
+
+  .benefits-section__icon {
+    display: inline-grid;
+    place-items: center;
+    width: 2.75rem;
+    height: 2.75rem;
+    border-radius: var(--radius-full);
+    background: var(--muted);
+    border: 1px solid var(--border);
+    color: var(--foreground);
   }
-  .hero__subtitle {
+
+  .benefits-section__card-title {
     margin: 0;
-    color: var(--color-text-secondary);
-    font-size: clamp(1.0625rem, 2vw, 1.25rem);
-    max-width: 32rem;
+    font-size: 1.0625rem;
+    letter-spacing: -0.01em;
+  }
+
+  .benefits-section__card-desc {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  .testimonials-section__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+  }
+
+  .testimonials-section__card {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+    padding: var(--space-xl) var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+    justify-content: space-between;
+  }
+
+  .testimonials-section__quote {
+    margin: 0;
+    color: var(--foreground);
     line-height: 1.7;
+    font-size: 0.9375rem;
+  }
+
+  .testimonials-section__attribution {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+  }
+
+  .testimonials-section__attribution strong {
+    font-size: 0.9375rem;
+  }
+
+  .testimonials-section__attribution span {
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  @media (max-width: 48rem) {
+    .fleet-section__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .testimonials-section__grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>

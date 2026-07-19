@@ -1,0 +1,105 @@
+---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
+import Section from "../ui/layout/Section/Section.astro";
+import Container from "../ui/layout/Container/Container.astro";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const steps = [
+  { icon: "lucide:calendar-check", titleKey: "how.step1.title", descKey: "how.step1.desc" },
+  { icon: "lucide:key-round", titleKey: "how.step2.title", descKey: "how.step2.desc" },
+  { icon: "lucide:car", titleKey: "how.step3.title", descKey: "how.step3.desc" },
+];
+---
+
+<section class="how-section" id="how-it-works">
+  <Section spacing="xl">
+    <Container size="md">
+      <header class="section-head">
+        <p class="section-head__eyebrow">{t(locale, "how.title")}</p>
+        <h2 class="section-head__title">{t(locale, "how.title")}</h2>
+        <p class="section-head__lead">{t(locale, "how.lead")}</p>
+      </header>
+    </Container>
+    <Container size="lg">
+      <div class="how-section__grid">
+        {
+          steps.map((step, i) => (
+            <div class="how-section__step" data-animate>
+              <div class="how-section__step-number" aria-hidden="true">{i + 1}</div>
+              <div class="how-section__step-body">
+                <h3 class="how-section__step-title">{t(locale, step.titleKey)}</h3>
+                <p class="how-section__step-desc">{t(locale, step.descKey)}</p>
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+</section>
+
+<style>
+  .how-section__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-2xl);
+    counter-reset: step;
+  }
+
+  .how-section__step {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-lg);
+    padding: var(--space-2xl) var(--space-lg);
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+  }
+
+  .how-section__step-number {
+    display: inline-grid;
+    place-items: center;
+    width: 3rem;
+    height: 3rem;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-heading);
+    font-size: 1.25rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .how-section__step-body {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .how-section__step-title {
+    margin: 0;
+    font-size: 1.25rem;
+    letter-spacing: -0.01em;
+  }
+
+  .how-section__step-desc {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.65;
+  }
+
+  @media (max-width: 48rem) {
+    .how-section__grid {
+      grid-template-columns: 1fr;
+      gap: var(--space-lg);
+    }
+  }
+</style>

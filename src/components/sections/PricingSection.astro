@@ -1,0 +1,234 @@
+---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
+import Section from "../ui/layout/Section/Section.astro";
+import Container from "../ui/layout/Container/Container.astro";
+import Button from "../ui/form/Button/Button.astro";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+const plans = [
+  {
+    key: "hourly",
+    featured: false,
+  },
+  {
+    key: "daily",
+    featured: true,
+  },
+  {
+    key: "weekly",
+    featured: false,
+  },
+];
+---
+
+<section class="pricing-section" id="pricing">
+  <Section spacing="xl">
+    <Container size="md">
+      <header class="section-head">
+        <p class="section-head__eyebrow">{t(locale, "pricing.title")}</p>
+        <h2 class="section-head__title">{t(locale, "pricing.title")}</h2>
+        <p class="section-head__lead">{t(locale, "pricing.lead")}</p>
+      </header>
+    </Container>
+    <Container size="lg">
+      <div class="pricing-section__grid">
+        {
+          plans.map((plan) => (
+            <article class:list={["pricing-section__card", plan.featured && "pricing-section__card--featured"]}>
+              {plan.featured && <span class="pricing-section__badge">Most popular</span>}
+              <div class="pricing-section__header">
+                <h3 class="pricing-section__plan-name">{t(locale, `pricing.${plan.key}.title`)}</h3>
+                <div class="pricing-section__price">
+                  <span class="pricing-section__amount">{t(locale, `pricing.${plan.key}.price`)}</span>
+                  <span class="pricing-section__period">{t(locale, `pricing.${plan.key}.per`)}</span>
+                </div>
+                <p class="pricing-section__desc">{t(locale, `pricing.${plan.key}.desc`)}</p>
+              </div>
+              <ul class="pricing-section__features">
+                <li class="pricing-section__feature">
+                  <span class="pricing-section__check" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  {t(locale, `pricing.${plan.key}.feature1`)}
+                </li>
+                <li class="pricing-section__feature">
+                  <span class="pricing-section__check" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  {t(locale, `pricing.${plan.key}.feature2`)}
+                </li>
+                <li class="pricing-section__feature">
+                  <span class="pricing-section__check" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  {t(locale, `pricing.${plan.key}.feature3`)}
+                </li>
+                <li class="pricing-section__feature">
+                  <span class="pricing-section__check" aria-hidden="true">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+                  </span>
+                  {t(locale, `pricing.${plan.key}.feature4`)}
+                </li>
+              </ul>
+              <Button href="#" variant={plan.featured ? "primary" : "secondary"} class="pricing-section__cta">
+                {t(locale, "pricing.cta")}
+              </Button>
+            </article>
+          ))
+        }
+      </div>
+    </Container>
+  </Section>
+</section>
+
+<style>
+  .pricing-section__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--space-lg);
+    align-items: start;
+  }
+
+  .pricing-section__card {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid var(--border);
+    border-radius: var(--radius-2xl);
+    background: var(--card);
+    padding: var(--space-2xl) var(--space-lg);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+    position: relative;
+  }
+
+  .pricing-section__card:hover {
+    transform: translateY(-3px);
+    box-shadow: var(--shadow-md);
+  }
+
+  .pricing-section__card--featured {
+    border-color: var(--primary);
+    border-width: 2px;
+    box-shadow: var(--shadow-md);
+    transform: scale(1.03);
+  }
+
+  .pricing-section__card--featured:hover {
+    transform: scale(1.03) translateY(-3px);
+    box-shadow: var(--shadow-lg);
+  }
+
+  .pricing-section__badge {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: inline-block;
+    padding: 0.3rem 1rem;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+  }
+
+  .pricing-section__header {
+    text-align: center;
+    padding-bottom: var(--space-lg);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: var(--space-lg);
+  }
+
+  .pricing-section__plan-name {
+    margin: 0 0 var(--space-sm);
+    font-size: 1.125rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--muted-foreground);
+  }
+
+  .pricing-section__price {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 0.25rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .pricing-section__amount {
+    font-family: var(--font-heading);
+    font-size: 2.75rem;
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+
+  .pricing-section__period {
+    color: var(--muted-foreground);
+    font-size: 1rem;
+  }
+
+  .pricing-section__desc {
+    margin: 0;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.5;
+  }
+
+  .pricing-section__features {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    flex: 1;
+  }
+
+  .pricing-section__feature {
+    display: flex;
+    align-items: center;
+    gap: 0.625rem;
+    font-size: 0.9375rem;
+    line-height: 1.4;
+  }
+
+  .pricing-section__check {
+    flex-shrink: 0;
+    display: inline-grid;
+    place-items: center;
+    width: 1.25rem;
+    height: 1.25rem;
+    border-radius: var(--radius-full);
+    background: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .pricing-section__cta {
+    margin-top: var(--space-xl);
+    width: 100%;
+  }
+
+  @media (max-width: 48rem) {
+    .pricing-section__grid {
+      grid-template-columns: 1fr;
+      max-width: 24rem;
+      margin-inline: auto;
+    }
+
+    .pricing-section__card--featured {
+      transform: none;
+    }
+
+    .pricing-section__card--featured:hover {
+      transform: translateY(-3px);
+    }
+  }
+</style>

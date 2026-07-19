@@ -20,6 +20,10 @@ export interface NavItem {
 /** Main navigation items for header */
 export const mainNav: NavItem[] = [
   { href: "/", labelKey: "nav.home" },
+  { href: "/#fleet", labelKey: "nav.fleet" },
+  { href: "/#pricing", labelKey: "nav.pricing" },
+  { href: "/#how-it-works", labelKey: "nav.howItWorks" },
+  { href: "/#faq", labelKey: "nav.faq" },
 ] as const;
 
 /** Footer navigation grouped by section */
@@ -28,12 +32,17 @@ export const footerNav: {
   legal: readonly NavItem[];
   social: readonly NavItem[];
 } = {
-  product: [],
+  product: [
+    { href: "/#fleet", labelKey: "nav.fleet" },
+    { href: "/#pricing", labelKey: "nav.pricing" },
+    { href: "/#how-it-works", labelKey: "nav.howItWorks" },
+    { href: "/#faq", labelKey: "nav.faq" },
+  ],
   legal: [],
   social: [
     {
-      href: "https://github.com/ml-move",
-      labelKey: "footer.github",
+      href: "https://instagram.com/ml-move",
+      labelKey: "footer.instagram",
     },
   ],
 } as const;

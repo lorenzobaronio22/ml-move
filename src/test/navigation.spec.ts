@@ -21,7 +21,7 @@ test.describe("navigation chrome", () => {
 
     await switcher.click();
     await page.waitForURL("/ml-move/it/", { timeout: 30_000 });
-    await expect(page.locator("h1").first()).toHaveText("Ciao ML Move!", {
+    await expect(page.locator("h1").first()).toHaveText("Noleggia un furgone. Sposta tutto.", {
       timeout: 30_000,
     });
 
@@ -33,7 +33,7 @@ test.describe("navigation chrome", () => {
 
     await back.click();
     await page.waitForURL("/ml-move/", { timeout: 30_000 });
-    await expect(page.locator("h1").first()).toHaveText("Hello ML Move!", {
+    await expect(page.locator("h1").first()).toHaveText("Rent a van. Move anything.", {
       timeout: 30_000,
     });
   });

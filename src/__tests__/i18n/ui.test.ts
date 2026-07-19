@@ -7,7 +7,7 @@ describe("t()", () => {
   });
 
   it("returns the Italian string for a known key", () => {
-    expect(t("it", "hero.title")).toBe("Ciao ML Move!");
+    expect(t("it", "hero.title")).toBe("Noleggia un furgone. Sposta tutto.");
   });
 
   it("returns the key as fallback when missing", () => {
