@@ -92,10 +92,10 @@ export interface SiteConfig {
 export const siteConfig: SiteConfig = {
   /* Core configuration — single source of truth for canonical/OG/sitemap/llms.txt.
    * Replace with your production domain when forking this template. */
-  url: "https://ml-move.pages.dev",
+  url: "https://lorenzobaronio22.github.io/ml-move",
   name: "ml-move",
   mark: "ML",
-  description: "A fast, modern site built with Astro and Cloudflare Pages.",
+  description: "A fast, modern site built with Astro and Cloudflare Workers.",
   author: "ML Move Team",
   email: "hello@ml-move.dev",
   authorImage: "/images/author.jpg",

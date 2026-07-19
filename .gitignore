@@ -37,7 +37,6 @@ Thumbs.db
 .redwood
 .cloudflare
 cloudflare-pages-report.html
-.wrangler/
 
 # Dev verification artifacts
 screenshots/
