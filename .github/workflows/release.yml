@@ -12,7 +12,7 @@ permissions:
 
 jobs:
   build-and-deploy:
-    name: Build & Deploy Production
+    name: Build and Deploy Production
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
