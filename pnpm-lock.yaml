@@ -104,8 +104,8 @@ devDependencies:
     specifier: ^10.1.8
     version: 10.1.8(eslint@10.7.0)
   eslint-plugin-astro:
-    specifier: ^3.0.0
-    version: 3.0.0(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)(@typescript-eslint/parser@8.64.0)(eslint@10.7.0)
+    specifier: ^3.0.1
+    version: 3.0.1(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)(@typescript-eslint/parser@8.64.0)(eslint@10.7.0)
   globals:
     specifier: ^17.7.0
     version: 17.7.0
@@ -119,8 +119,8 @@ devDependencies:
     specifier: ^0.14.1
     version: 0.14.1
   prettier-plugin-tailwindcss:
-    specifier: ^0.8.0
-    version: 0.8.0(prettier-plugin-astro@0.14.1)(prettier@3.9.5)
+    specifier: ^0.8.1
+    version: 0.8.1(prettier-plugin-astro@0.14.1)(prettier@3.9.5)
   stylelint:
     specifier: ^17.14.0
     version: 17.14.0(typescript@6.0.3)
@@ -3303,8 +3303,8 @@ packages:
       eslint: 10.7.0
     dev: true
 
-  /eslint-plugin-astro@3.0.0(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)(@typescript-eslint/parser@8.64.0)(eslint@10.7.0):
-    resolution: {integrity: sha512-wQv7uFZHuxN6QY1ynS9SJ0Wg41XE772rw0x9LSB4gzMixFYwSzMIXteUPLGdtaMI6ktZ227xFNnPw24HTwLJEg==}
+  /eslint-plugin-astro@3.0.1(@emnapi/core@1.11.2)(@emnapi/runtime@1.11.2)(@typescript-eslint/parser@8.64.0)(eslint@10.7.0):
+    resolution: {integrity: sha512-skys0KV/5m/rQ6a4BDAGOGtrGoBlWNYiWtoDjx25bghDwTiKXng63s4Yv823iX3ht/tH/kHtoUM2poxESGsv3w==}
     engines: {node: ^22.22.3 || ^24.16.0 || >=26.3.0}
     peerDependencies:
       '@typescript-eslint/parser': '>=8.61.0'
@@ -3324,7 +3324,7 @@ packages:
       eslint: 10.7.0
       espree: 11.2.0
       globals: 17.7.0
-      postcss: 8.5.19
+      postcss: 8.5.20
       postcss-selector-parser: 7.1.4
     transitivePeerDependencies:
       - '@emnapi/core'
@@ -5297,6 +5297,7 @@ packages:
       nanoid: 3.3.16
       picocolors: 1.1.1
       source-map-js: 1.2.1
+    dev: true
 
   /postcss@8.5.20:
     resolution: {integrity: sha512-lW616l85ucIQL+FocMmL7pQFPqBmwejrCMg+iPxyImlrANNJG9NHq/RkyCZopDhd8C3LA03PHRJDjkbGu8vvug==}
@@ -5320,8 +5321,8 @@ packages:
       sass-formatter: 0.7.9
     dev: true
 
-  /prettier-plugin-tailwindcss@0.8.0(prettier-plugin-astro@0.14.1)(prettier@3.9.5):
-    resolution: {integrity: sha512-V8ITGH87yuBDF6JpEZTOVlUz/saAwqb8f3HRgUj8Lh+tGCcrmorhsLpYqzygwFwK0PE2Ib6Mv3M7T/uE2tZV1g==}
+  /prettier-plugin-tailwindcss@0.8.1(prettier-plugin-astro@0.14.1)(prettier@3.9.5):
+    resolution: {integrity: sha512-iaFMYqDsE4ffdDkn5qup0j5f2aCEBFZrdrZnvu9QKTlWx/iGPeQ4HHu7b7fCPMxeo9nwQBiOAh2nSypdFYWJkw==}
     engines: {node: '>=20.19'}
     peerDependencies:
       '@ianvs/prettier-plugin-sort-imports': '*'
@@ -6516,7 +6517,7 @@ packages:
       '@types/node': 26.1.1
       lightningcss: 1.32.0
       picomatch: 4.0.5
-      postcss: 8.5.19
+      postcss: 8.5.20
       rolldown: 1.1.5
       tinyglobby: 0.2.17
     optionalDependencies:
