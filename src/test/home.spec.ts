@@ -3,7 +3,7 @@ import { test, expect } from "@playwright/test";
 test.describe("homepage", () => {
   test("homepage loads with the hello message", async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     const heading = page.locator("h1").first();
     await expect(heading).toBeVisible({ timeout: 30_000 });
     await expect(heading).toHaveText("Hello ML Move!", { timeout: 30_000 });
@@ -11,7 +11,7 @@ test.describe("homepage", () => {
 
   test("homepage shows nav links", async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     await expect(page.locator(".header__list a").first()).toBeVisible({
       timeout: 30_000,
     });
@@ -21,16 +21,16 @@ test.describe("homepage", () => {
     page,
   }) => {
     test.setTimeout(60_000);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     const switcher = page.locator(".language-switcher").first();
     await expect(switcher).toBeVisible({ timeout: 30_000 });
     await expect(switcher).toHaveText("IT");
-    await expect(switcher).toHaveAttribute("href", "/it/");
+    await expect(switcher).toHaveAttribute("href", "/ml-move/it/");
   });
 
   test("dark mode toggle flips the html dark class", async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     const toggle = page.locator("[data-theme-toggle]").first();
     await expect(toggle).toBeVisible({ timeout: 30_000 });
     const before = await page.evaluate(() =>
@@ -45,7 +45,7 @@ test.describe("homepage", () => {
 
   test("Ctrl+K opens the search modal", async ({ page }) => {
     test.setTimeout(60_000);
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     await expect(page.locator("h1").first()).toBeVisible({ timeout: 30_000 });
     await page.keyboard.press("Control+k");
     const dialog = page.locator("#search-modal").first();
@@ -58,7 +58,7 @@ test.describe("homepage", () => {
     page,
   }) => {
     test.setTimeout(60_000);
-    await page.goto("/it/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/it/", { waitUntil: "domcontentloaded" });
     const heading = page.locator("h1").first();
     await expect(heading).toBeVisible({ timeout: 30_000 });
     await expect(heading).toHaveText("Ciao ML Move!", { timeout: 30_000 });
@@ -66,13 +66,13 @@ test.describe("homepage", () => {
     const switcher = page.locator(".language-switcher").first();
     await expect(switcher).toBeVisible({ timeout: 30_000 });
     await expect(switcher).toHaveText("EN");
-    await expect(switcher).toHaveAttribute("href", "/");
+    await expect(switcher).toHaveAttribute("href", "/ml-move/");
   });
 
   test("mobile menu toggle opens the panel", async ({ page }) => {
     test.setTimeout(60_000);
     await page.setViewportSize({ width: 375, height: 800 });
-    await page.goto("/", { waitUntil: "domcontentloaded" });
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     const toggle = page.locator("[data-menu-toggle]").first();
     await expect(toggle).toBeVisible({ timeout: 30_000 });
     await toggle.click();

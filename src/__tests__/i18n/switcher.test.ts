@@ -1,7 +1,17 @@
-import { describe, it, expect } from "vitest";
+import { describe, it, expect, beforeEach, afterEach } from "vitest";
 import { getEquivalentPath, hasEquivalent } from "../../i18n/switcher";
 
+const originalEnv = { ...import.meta.env };
+
 describe("getEquivalentPath", () => {
+  beforeEach(() => {
+    import.meta.env.BASE_URL = "/";
+  });
+
+  afterEach(() => {
+    import.meta.env.BASE_URL = originalEnv.BASE_URL ?? "/";
+  });
+
   it("switches from English root to Italian root", () => {
     expect(getEquivalentPath("/", "it")).toBe("/it/");
   });
@@ -23,7 +33,41 @@ describe("getEquivalentPath", () => {
   });
 });
 
+describe("getEquivalentPath with base path", () => {
+  beforeEach(() => {
+    import.meta.env.BASE_URL = "/ml-move/";
+  });
+
+  afterEach(() => {
+    import.meta.env.BASE_URL = originalEnv.BASE_URL ?? "/";
+  });
+
+  it("switches from English root to Italian root", () => {
+    expect(getEquivalentPath("/ml-move/", "it")).toBe("/ml-move/it/");
+  });
+
+  it("switches from Italian root back to English root", () => {
+    expect(getEquivalentPath("/ml-move/it/", "en")).toBe("/ml-move/");
+  });
+
+  it("switches from English services to Italian", () => {
+    expect(getEquivalentPath("/ml-move/services", "it")).toBe("/ml-move/it/services");
+  });
+
+  it("switches from Italian services to English", () => {
+    expect(getEquivalentPath("/ml-move/it/services", "en")).toBe("/ml-move/services");
+  });
+});
+
 describe("hasEquivalent", () => {
+  beforeEach(() => {
+    import.meta.env.BASE_URL = "/";
+  });
+
+  afterEach(() => {
+    import.meta.env.BASE_URL = originalEnv.BASE_URL ?? "/";
+  });
+
   it("returns true for root path", () => {
     expect(hasEquivalent("/")).toBe(true);
   });
