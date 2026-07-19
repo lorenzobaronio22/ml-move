@@ -1,7 +1,7 @@
 /* eslint-config-prettier */
 
 /**
- * ESLint configuration for Astro + Sveltia CMS + Cloudflare Pages template
+ * ESLint configuration for Astro + Sveltia CMS + Cloudflare Workers template
  * Converted to ESLint v8.x-compatible CommonJS format for ESLint 8.57.1
  * Supports both .js, .jsx, .ts, .tsx files in src/
  */
