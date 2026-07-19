@@ -1,6 +1,6 @@
 {
   "name": "ml-move",
-  "version": "1.0.0",
+  "version": "0.0.1",
   "private": true,
   "description": "A fast, modern site built with Astro and Cloudflare Pages",
   "license": "MIT",
