@@ -1,5 +1,5 @@
 import type { Locale } from "../lib/site-config";
-import { stripLocale, localePrefix } from "./routes";
+import { stripLocale, resolveRoute } from "./routes";
 
 /**
  * Known route map for equivalent content across locales.
@@ -12,27 +12,21 @@ const EQUIVALENT_ROUTES: Record<string, boolean> = {
 
 /**
  * Resolve the equivalent localized path for a given current path
- * and target locale. Uses the translation key mapping to find
- * equivalent content items.
+ * and target locale (includes base path).
  *
- * Example: getEquivalentPath("/id/services", "en") → "/en/services"
+ * Example (base=/ml-move): getEquivalentPath("/ml-move/", "it") → "/ml-move/it/"
  */
 export function getEquivalentPath(
   currentPath: string,
   targetLocale: Locale,
 ): string {
   const contentPath = stripLocale(currentPath);
-  const prefix = localePrefix(targetLocale);
 
-  // If the route is known to have an equivalent, map it
   if (EQUIVALENT_ROUTES[contentPath]) {
-    const result = `${prefix}${contentPath === "/" ? "/" : contentPath}`;
-    return result || "/";
+    return resolveRoute(targetLocale, contentPath);
   }
 
-  // For blog posts and docs, try the content path directly
-  // (translation key in frontmatter handles pairing)
-  return `${prefix}${contentPath}`;
+  return resolveRoute(targetLocale, contentPath);
 }
 
 /**

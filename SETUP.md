@@ -9,11 +9,11 @@
 
 ```bash
 pnpm install
-cp .env.example .env   # optional; set SITE_URL for correct prod URLs
+cp .env.example .env   # optional
 pnpm dev
 ```
 
-Visit http://localhost:4321. Default locale is at `/` and `/id/`, English at `/en/`.
+Visit http://localhost:4321/ml-move/. English is at `/ml-move/`, Italian at `/ml-move/it/`.
 
 ## Build
 
@@ -27,7 +27,7 @@ pnpm preview   # serve the production build locally
 ### One-time setup
 
 1. Go to your repo **Settings → Pages → Source** → set to **GitHub Actions**.
-2. Ensure the `BASE_PATH` / `SITE_URL` is configured (see `src/config/site.config.ts`).
+2. Ensure the `SITE_URL` is configured in `src/config/site.config.ts`.
 
 ### Automation
 

@@ -8,7 +8,7 @@ export default defineConfig({
   workers: process.env.CI ? 1 : undefined,
   reporter: process.env.CI ? [["github"], ["html", { open: "never" }]] : "list",
   use: {
-    baseURL: "http://127.0.0.1:4399",
+    baseURL: "http://127.0.0.1:4399/ml-move",
     trace: "on-first-retry",
     screenshot: "only-on-failure",
     video: "retain-on-failure",
@@ -21,7 +21,7 @@ export default defineConfig({
   ],
   webServer: {
     command: "pnpm exec astro preview --port 4399 --host 127.0.0.1",
-    url: "http://127.0.0.1:4399",
+    url: "http://127.0.0.1:4399/ml-move",
     reuseExistingServer: false,
     timeout: 120_000,
   },

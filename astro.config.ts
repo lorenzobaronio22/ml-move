@@ -18,7 +18,7 @@ function contentValidationIntegration() {
 
 export default defineConfig({
   site: siteConfig.url,
-  base: process.env.BASE_PATH || "/",
+  base: "/ml-move",
   i18n: {
     defaultLocale: "en",
     locales: ["en", "it"],
