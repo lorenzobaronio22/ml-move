@@ -1,0 +1,169 @@
+---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
+import Container from "../ui/layout/Container/Container.astro";
+import Button from "../ui/form/Button/Button.astro";
+
+export interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props as Props;
+---
+
+<section class="hero-section">
+  <div class="hero-section__bg-grid" aria-hidden="true"></div>
+  <div class="hero-section__bg-glow" aria-hidden="true"></div>
+  <Container>
+    <div class="hero-section__body">
+      <span class="hero-section__eyebrow">ML Move — Van Rental</span>
+      <h1 class="hero-section__title">{t(locale, "hero.title")}</h1>
+      <p class="hero-section__subtitle">{t(locale, "hero.subtitle")}</p>
+      <div class="hero-section__actions">
+        <Button href="#contact" variant="primary" size="lg">{t(locale, "hero.cta")}</Button>
+        <Button href="#contact" variant="secondary" size="lg">{t(locale, "hero.ctaSecondary")}</Button>
+      </div>
+      <div class="hero-section__stats">
+        <div class="hero-section__stat">
+          <span class="hero-section__stat-value">200+</span>
+          <span class="hero-section__stat-label">{t(locale, "stats.vehicles")}</span>
+        </div>
+        <div class="hero-section__stat">
+          <span class="hero-section__stat-value">15k+</span>
+          <span class="hero-section__stat-label">{t(locale, "stats.customers")}</span>
+        </div>
+        <div class="hero-section__stat">
+          <span class="hero-section__stat-value">98%</span>
+          <span class="hero-section__stat-label">{t(locale, "stats.satisfaction")}</span>
+        </div>
+        <div class="hero-section__stat">
+          <span class="hero-section__stat-value">5+</span>
+          <span class="hero-section__stat-label">{t(locale, "stats.locations")}</span>
+        </div>
+      </div>
+    </div>
+  </Container>
+</section>
+
+<style>
+  .hero-section {
+    position: relative;
+    overflow: hidden;
+    padding-block: clamp(4rem, 10vh, 8rem);
+    isolation: isolate;
+  }
+
+  .hero-section__bg-grid {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+      linear-gradient(to right, color-mix(in srgb, var(--foreground) 7%, transparent) 1px, transparent 1px),
+      linear-gradient(to bottom, color-mix(in srgb, var(--foreground) 7%, transparent) 1px, transparent 1px);
+    background-size: 56px 56px;
+    mask-image: radial-gradient(ellipse 75% 60% at 50% 0%, #000 40%, transparent 100%);
+  }
+
+  .hero-section__bg-glow {
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(ellipse 60% 50% at 50% -10%, color-mix(in srgb, var(--foreground) 8%, transparent), transparent 70%);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .hero-section__bg-glow {
+      animation: hero-pulse 8s ease-in-out infinite alternate;
+    }
+  }
+
+  @keyframes hero-pulse {
+    from { opacity: 70%; }
+    to { opacity: 100%; }
+  }
+
+  .hero-section__body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: var(--space-md);
+    max-width: 52rem;
+    margin-inline: auto;
+  }
+
+  .hero-section__eyebrow {
+    display: inline-block;
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted-foreground);
+    margin-bottom: var(--space-xs);
+  }
+
+  .hero-section__title {
+    margin: 0;
+    font-size: clamp(2.8rem, 6vw, 5rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1.05;
+    text-wrap: balance;
+  }
+
+  .hero-section__subtitle {
+    margin: 0;
+    max-width: 38rem;
+    color: var(--muted-foreground);
+    font-size: clamp(1.05rem, 2vw, 1.2rem);
+    line-height: 1.65;
+  }
+
+  .hero-section__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .hero-section__stats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--space-2xl);
+    margin-top: var(--space-3xl);
+    padding-top: var(--space-2xl);
+    border-top: 1px solid var(--border);
+    width: 100%;
+    max-width: 36rem;
+  }
+
+  .hero-section__stat {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15rem;
+  }
+
+  .hero-section__stat-value {
+    font-family: var(--font-heading);
+    font-size: 1.75rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+
+  .hero-section__stat-label {
+    font-size: 0.8125rem;
+    color: var(--muted-foreground);
+  }
+
+  @media (max-width: 30rem) {
+    .hero-section__stats {
+      gap: var(--space-lg);
+    }
+  }
+</style>

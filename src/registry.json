@@ -150,5 +150,35 @@
   "pages": [
     { "name": "Home", "path": "src/pages/index.astro", "locales": ["en"] },
     { "name": "Home (Italian)", "path": "src/pages/[locale]/index.astro", "locales": ["it"] }
+  ],
+  "sections": [
+    {
+      "name": "HeroSection",
+      "tier": "section",
+      "path": "src/components/sections/HeroSection.astro",
+      "props": ["locale"],
+      "i18nAware": true
+    },
+    {
+      "name": "HowItWorksSection",
+      "tier": "section",
+      "path": "src/components/sections/HowItWorksSection.astro",
+      "props": ["locale"],
+      "i18nAware": true
+    },
+    {
+      "name": "PricingSection",
+      "tier": "section",
+      "path": "src/components/sections/PricingSection.astro",
+      "props": ["locale"],
+      "i18nAware": true
+    },
+    {
+      "name": "FAQSection",
+      "tier": "section",
+      "path": "src/components/sections/FAQSection.astro",
+      "props": ["locale"],
+      "i18nAware": true
+    }
   ]
 }

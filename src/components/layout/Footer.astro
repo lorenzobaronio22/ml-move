@@ -1,30 +1,199 @@
 ---
+import { t } from "../../i18n/ui";
+import type { Locale } from "../../lib/site-config";
 import { siteConfig } from "../../config/site.config";
+import { footerNav } from "../../config/nav.config";
+
+export interface Props {
+  currentLocale: Locale;
+}
+
+const { currentLocale: locale } = Astro.props as Props;
+const year = new Date().getFullYear();
+const productLinks = footerNav.product;
+const socialLinks = footerNav.social;
 ---
 
 <footer class="footer">
   <div class="container footer__inner">
-    <p class="footer__copy">&copy; 2026 {siteConfig.name}</p>
+    <div class="footer__brand">
+      <span class="footer__logo" aria-hidden="true">{siteConfig.mark}</span>
+      <p class="footer__tagline">{t(locale, "footer.tagline")}</p>
+    </div>
+    <nav class="footer__nav" aria-label="Footer navigation">
+      <div class="footer__col">
+        <h3 class="footer__heading">{t(locale, "nav.fleet")}</h3>
+        <ul class="footer__list">
+          {productLinks.map((link) => (
+            <li><a href={link.href}>{t(locale, link.labelKey)}</a></li>
+          ))}
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">{t(locale, "footer.contact")}</h3>
+        <ul class="footer__list">
+          <li><a href="mailto:example@mlmove.com">{t(locale, "footer.email")}</a></li>
+          <li><a href="tel:+15551234567">{t(locale, "footer.phone")}</a></li>
+        </ul>
+      </div>
+      <div class="footer__col">
+        <h3 class="footer__heading">Legal</h3>
+        <ul class="footer__list">
+          <li><a href="#">{t(locale, "footer.privacy")}</a></li>
+          <li><a href="#">{t(locale, "footer.terms")}</a></li>
+        </ul>
+      </div>
+    </nav>
+    <div class="footer__bottom">
+      <p class="footer__copy">&copy; {year} {siteConfig.name}. {t(locale, "footer.rights")}</p>
+      <div class="footer__social">
+        {socialLinks.map((link) => (
+          <a href={link.href} target="_blank" rel="noopener noreferrer" class="footer__social-link">
+            {t(locale, link.labelKey)}
+          </a>
+        ))}
+      </div>
+    </div>
   </div>
 </footer>
 
 <style>
   .footer {
-    margin-top: auto;
-    border-top: 1px solid var(--color-border);
-    background: var(--color-bg-secondary);
+    border-top: 1px solid var(--border);
+    background: var(--card);
   }
 
   .footer__inner {
-    padding-block: var(--space-lg);
+    padding-block: var(--space-2xl) var(--space-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-2xl);
+  }
+
+  .footer__brand {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+  }
+
+  .footer__logo {
+    display: inline-grid;
+    place-items: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: var(--radius-lg);
+    background: var(--primary);
+    color: var(--primary-foreground);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    font-size: 1.125rem;
+  }
+
+  .footer__tagline {
+    margin: 0;
+    max-width: 28rem;
+    color: var(--muted-foreground);
+    font-size: 0.9375rem;
+    line-height: 1.6;
+  }
+
+  .footer__nav {
     display: flex;
     justify-content: center;
+    gap: var(--space-3xl);
+    flex-wrap: wrap;
+  }
+
+  .footer__col {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+    min-width: 8rem;
+  }
+
+  .footer__heading {
+    margin: 0;
+    font-size: 0.8125rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted-foreground);
+  }
+
+  .footer__list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+  }
+
+  .footer__list a {
+    color: var(--foreground);
+    text-decoration: none;
+    font-size: 0.9375rem;
+    transition: color 0.15s ease;
+  }
+
+  .footer__list a:hover {
+    color: var(--primary);
+  }
+
+  .footer__list a:focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+    border-radius: var(--radius-sm);
+  }
+
+  .footer__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    padding-top: var(--space-lg);
+    border-top: 1px solid var(--border);
   }
 
   .footer__copy {
     margin: 0;
-    color: var(--color-text-secondary);
-    font-size: 0.875rem;
-    text-align: center;
+    color: var(--muted-foreground);
+    font-size: 0.8125rem;
+  }
+
+  .footer__social {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .footer__social-link {
+    color: var(--muted-foreground);
+    text-decoration: none;
+    font-size: 0.8125rem;
+    transition: color 0.15s ease;
+  }
+
+  .footer__social-link:hover {
+    color: var(--foreground);
+  }
+
+  @media (max-width: 40rem) {
+    .footer__bottom {
+      flex-direction: column;
+      text-align: center;
+    }
+
+    .footer__nav {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+
+    .footer__col {
+      min-width: auto;
+    }
   }
 </style>

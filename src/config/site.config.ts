@@ -90,52 +90,44 @@ export interface SiteConfig {
 }
 
 export const siteConfig: SiteConfig = {
-  /* Core configuration — single source of truth for canonical/OG/sitemap/llms.txt.
-   * Replace with your production domain when forking this template. */
   url: "https://lorenzobaronio22.github.io/ml-move",
-  name: "ml-move",
+  name: "ML Move",
   mark: "ML",
-  description: "A fast, modern site built with Astro and Cloudflare Workers.",
+  description: "Rent cargo and passenger vans — flexible, reliable, no hassle. ML Move gets you moving.",
   author: "ML Move Team",
   email: "hello@ml-move.dev",
   authorImage: "/images/author.jpg",
 
-  /* Social links */
   socialLinks: [
     {
-      platform: "github",
-      url: "https://github.com/ml-move",
-      label: "GitHub",
+      platform: "instagram",
+      url: "https://instagram.com/ml-move",
+      icon: "simple-icons:instagram",
+      label: "Instagram",
     },
   ],
 
-  /* Header settings */
   header: {
     showSocialLinks: true,
   },
 
-  /* Search engine verification */
   verification: {
     google: "",
     bing: "",
   },
 
-  /* Social image */
   ogImage: "/images/og-default.jpg",
 
-  /* Blog configuration */
   blog: {
     postsPerPage: 10,
     tagCloudLimit: 20,
   },
 
-  /* Services configuration */
   services: {
     perPage: 12,
     tagCloudLimit: 20,
   },
 
-  /* Article features */
   articleFeatures: {
     toc: {
       enabled: true,
@@ -147,10 +139,8 @@ export const siteConfig: SiteConfig = {
     comments: { enabled: false },
   },
 
-  /* Blog image overlay */
   blogImageOverlay: true,
 
-  /* Branding */
   branding: {
     colors: {
       primary: "#171717",
@@ -168,7 +158,6 @@ export const siteConfig: SiteConfig = {
     favicon: "/favicon.svg",
   },
 
-  /* i18n configuration (matches i18n.config.ts) */
   i18n: {
     enabled: true,
     locales: ["en", "it"],

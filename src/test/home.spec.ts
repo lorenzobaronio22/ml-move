@@ -1,12 +1,12 @@
 import { test, expect } from "@playwright/test";
 
 test.describe("homepage", () => {
-  test("homepage loads with the hello message", async ({ page }) => {
+  test("homepage loads with the hero title", async ({ page }) => {
     test.setTimeout(60_000);
     await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
     const heading = page.locator("h1").first();
     await expect(heading).toBeVisible({ timeout: 30_000 });
-    await expect(heading).toHaveText("Hello ML Move!", { timeout: 30_000 });
+    await expect(heading).toHaveText("Rent a van. Move anything.", { timeout: 30_000 });
   });
 
   test("homepage shows nav links", async ({ page }) => {
@@ -54,14 +54,14 @@ test.describe("homepage", () => {
     await expect(dialog).not.toBeVisible({ timeout: 30_000 });
   });
 
-  test("Italian locale shows the Italian hello message and EN link back", async ({
+  test("Italian locale shows the Italian hero title and EN link back", async ({
     page,
   }) => {
     test.setTimeout(60_000);
     await page.goto("/ml-move/it/", { waitUntil: "domcontentloaded" });
     const heading = page.locator("h1").first();
     await expect(heading).toBeVisible({ timeout: 30_000 });
-    await expect(heading).toHaveText("Ciao ML Move!", { timeout: 30_000 });
+    await expect(heading).toHaveText("Noleggia un furgone. Sposta tutto.", { timeout: 30_000 });
 
     const switcher = page.locator(".language-switcher").first();
     await expect(switcher).toBeVisible({ timeout: 30_000 });
@@ -79,5 +79,57 @@ test.describe("homepage", () => {
     await expect(toggle).toHaveAttribute("aria-expanded", "true", {
       timeout: 30_000,
     });
+  });
+
+  test("displays the fleet section with cargo and passenger cards", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#fleet")).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("Cargo Vans").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("Passenger Vans").first()).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("displays the pricing section with three plans", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#pricing")).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("€15").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("€80").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("€350").first()).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("displays the how it works section", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#how-it-works")).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("Book online").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("Pick up").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("Drive").first()).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("displays the FAQ section", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#faq")).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("displays the contact section with email, phone and address", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.locator("#contact")).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("example@mlmove.com").first()).toBeVisible({ timeout: 30_000 });
+    await expect(page.getByText("+1 (555) 123-4567").first()).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("displays the final CTA section", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("Ready to hit the road?").first()).toBeVisible({ timeout: 30_000 });
+  });
+
+  test("footer shows contact info", async ({ page }) => {
+    test.setTimeout(60_000);
+    await page.goto("/ml-move/", { waitUntil: "domcontentloaded" });
+    await expect(page.getByText("example@mlmove.com").first()).toBeVisible({ timeout: 30_000 });
   });
 });

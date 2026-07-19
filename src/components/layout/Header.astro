@@ -29,8 +29,8 @@ const navLinks = mainNav.map((item) => ({
   active: contentPath === item.href,
 }));
 
-const githubUrl = siteConfig.socialLinks.find(
-  (link) => link.platform === "github",
+const socialUrl = siteConfig.socialLinks.find(
+  (link) => link.platform === "instagram",
 )?.url;
 ---
 
@@ -80,16 +80,16 @@ const githubUrl = siteConfig.socialLinks.find(
 
     <div class="header__actions">
       {
-        githubUrl && (
+        socialUrl && (
           <a
-            href={githubUrl}
-            class="header__icon-button header__github"
+            href={socialUrl}
+            class="header__icon-button header__social"
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="View source on GitHub"
+            aria-label="Instagram"
           >
             <Icon
-              name="simple-icons:github"
+              name="simple-icons:instagram"
               class="header__icon"
               aria-hidden="true"
             />
@@ -333,7 +333,7 @@ const githubUrl = siteConfig.socialLinks.find(
     padding-inline: 0.75rem;
   }
 
-  .header__github {
+  .header__social {
     width: 2.5rem;
     padding-inline: 0;
   }
