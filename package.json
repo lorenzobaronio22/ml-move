@@ -1,6 +1,6 @@
 {
   "name": "ml-move",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "private": true,
   "description": "A fast, modern site built with Astro, deployed to GitHub Pages",
   "license": "MIT",
