@@ -63,7 +63,7 @@ export function ogMeta(meta: SeoMeta) {
   const imageUrl =
     meta.image ||
     (meta.path
-      ? canonicalUrl(meta.locale, meta.path.replace(/^\//, "/"))
+      ? canonicalUrl(meta.locale, meta.path.replace(/^\/+/, ""))
       : undefined);
 
   const base: Record<string, string> = {
