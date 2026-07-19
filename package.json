@@ -28,7 +28,8 @@
     "test:e2e": "playwright test",
     "validate:i18n": "node scripts/validate-i18n.js",
     "validate:secrets": "node scripts/validate-secrets.cjs",
-    "postbuild": "node scripts/generate-media-manifest.cjs"
+    "postbuild": "node scripts/generate-media-manifest.cjs",
+    "tag": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "dependencies": {
     "@astrojs/mdx": "^7.0.3",
