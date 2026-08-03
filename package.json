@@ -32,8 +32,8 @@
     "tag": "git tag v$npm_package_version && git push origin v$npm_package_version"
   },
   "dependencies": {
-    "@astrojs/mdx": "^7.0.3",
-    "@astrojs/react": "^6.0.1",
+    "@astrojs/mdx": "^7.0.5",
+    "@astrojs/react": "^6.0.2",
     "@astrojs/rss": "^4.0.19",
     "@astrojs/sitemap": "^3.7.3",
     "@fontsource-variable/jetbrains-mono": "^5.3.0",
@@ -42,7 +42,7 @@
     "@iconify-json/lucide": "^1.2.118",
     "@iconify-json/simple-icons": "^1.2.90",
     "@tailwindcss/vite": "^4.3.3",
-    "astro": "^7.1.1",
+    "astro": "^7.1.6",
     "astro-icon": "^1.1.5",
     "clsx": "^2.1.1",
     "cva": "1.0.0-beta.8",
@@ -55,7 +55,7 @@
     "zod": "^4.4.3"
   },
   "devDependencies": {
-    "@astrojs/check": "^0.9.9",
+    "@astrojs/check": "^0.9.10",
     "@eslint/js": "^10.0.1",
     "@playwright/test": "^1.61.1",
     "@types/node": "^26.1.1",
